@@ -2,7 +2,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 
-export default function Home() {
+export default function Home({ data }) {
   return (
     <div className={styles.container}>
       <Head>
@@ -17,8 +17,7 @@ export default function Home() {
         </h1>
 
         <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
+          {data[0].synopsis}
         </p>
 
         <div className={styles.grid}>
@@ -66,4 +65,17 @@ export default function Home() {
       </footer>
     </div>
   )
+}
+
+export async function getServerSideProps() {
+  const baseURL = 'https://api.sampleapis.com/futurama/info';
+  const data = await fetch(baseURL).then(resp => resp.json());
+
+  if (!data) {
+    return {
+      notFound: true,
+    };
+  }
+
+  return { props: { data } };
 }
