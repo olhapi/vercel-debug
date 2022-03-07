@@ -2,6 +2,12 @@ import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 
+import {
+  LocationOn as LocationOnIcon,
+  Business as BusinessIcon,
+  Person as PersonIcon,
+} from '@mui/icons-material';
+
 export default function Home({ data }) {
   return (
     <div className={styles.container}>
@@ -13,10 +19,12 @@ export default function Home({ data }) {
 
       <main className={styles.main}>
         <h1 className={styles.title}>
+          <LocationOnIcon />
           Welcome to <a href="https://nextjs.org">Next.js!</a>
         </h1>
 
         <p className={styles.description}>
+          <BusinessIcon />
           {data[0].synopsis}
         </p>
 
@@ -43,6 +51,7 @@ export default function Home({ data }) {
             href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
             className={styles.card}
           >
+            <PersonIcon />
             <h2>Deploy &rarr;</h2>
             <p>
               Instantly deploy your Next.js site to a public URL with Vercel.
